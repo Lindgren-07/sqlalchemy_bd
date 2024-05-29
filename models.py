@@ -29,7 +29,7 @@ class Administrador(Base):
          raise ValueError('O tamanho do nome deve conter entre 1 a 30 Character!')
        
       for i in nome:
-         if not i.isalpha():
+         if not i.isalpha() and not i.isspace():
             raise ValueError('O campo nome deve conter apenas character válidos!')
           
     
@@ -38,7 +38,7 @@ class Administrador(Base):
          raise ValueError('O campo "senha" não pode ser nula')
        
       tamanho = len(senha)
-
+  
       if tamanho < 8 or tamanho > 15:
          raise ValueError('A senha deve conter entre 8 a 15 character!')
        
@@ -70,10 +70,8 @@ class Cachorro(Base):
          raise ValueError('O tamanho do nome tem que ter entre 1 a 20 character!')
        
       for i in nome_cachorro:
-         if not i.isalpha():
-            raise ValueError('o nome deve conter apenas character válidos!')
-
-
+         if not i.isalpha() and not i.isspace():
+            raise ValueError('O campo nome deve conter apenas character válidos!')
 
    def validarSexoCachorro(sexo_cachorro):
       if sexo_cachorro == '':
@@ -86,19 +84,13 @@ class Cachorro(Base):
       if tamanho != 1:
          raise ValueError('Deve conter apenas 1 character!')
         
-      for i in sexo_cachorro:
-         if not i.isalpha():
-            raise ValueError('O nome deve conter apenas character valido!')
-
+      if sexo_cachorro not in 'MF':
+         raise ValueError('Sexo deve ser apenas masculino ou feminino!')
+  
     
 
    def validarRacaCachorro(raca_cachorro):
-              
-      tamanho = len(raca_cachorro)
-
-      if tamanho < 1 or tamanho > 20:
-         raise ValueError('O tamanho do nome da raça tem que ter entre 1 a 20 character!')
-       
+                 
       for i in raca_cachorro:
          if not i.isalpha():
             raise ValueError('o nome da raça deve conter apenas characters válidos!')

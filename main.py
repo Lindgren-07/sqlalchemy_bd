@@ -1,12 +1,14 @@
 from flask import Flask,request,redirect,render_template,flash
 import validacao
+import models 
 app = Flask(__name__)
 app.secret_key = 'joao07'
 
 
 @app.route('/')
 def home():
-   return render_template('index.html')
+   cachorros = models.session.query(models.Cachorro).all()
+   return render_template('index.html',cachorros = cachorros)
 
 
 @app.route('/cadastrar_cachorro',methods=['POST'])
@@ -15,6 +17,13 @@ def cadastrar_cachorro():
    sexo = request.form.get('sexo_cachorro')
    raca = request.form.get('raca_cachorro')
    descricao = request.form.get('descricao_cachorro')
+
+   if raca == '':
+      raca = 'null'
+
+   if descricao == '':
+      descricao = 'null'
+
 
    try:
       validacao.validarCachorro(nome,sexo,raca,descricao)
