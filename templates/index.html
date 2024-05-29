@@ -45,9 +45,9 @@
         <div id="cachorro Fundo">
             {% if cachorros %}
                 {% for i in cachorros%}
-                  <form action="/excluirUsuario" method="post">
+                  <form action="/excluir_cachorro" method="post">
                     <ul id="lista">
-                        <input type="hidden" name="cachorroParaExcluir" value="{{i.id_cachorro}}">
+                        <input type="hidden" name="idCachorro" value="{{i.id_cachorro}}">
                         <input type="hidden" name="nome" value="{{i.nome_cachorro}}">
                         <li>Nome: {{i.nome_cachorro}}</li>
                         <li>Sexo: {{i.sexo_cachorro}}</li>
@@ -62,7 +62,7 @@
                 {% endfor %}
 
             {% else %}
-            <h1>não existe usuários cadastrados</h1>
+            <h1>não existe cachorros cadastrados</h1>
             {% endif %}
 
         </div>

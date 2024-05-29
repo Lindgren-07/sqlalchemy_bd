@@ -16,3 +16,7 @@ def validarCachorro(n,s,r,d):
     else:
         print('funcionou')
         
+
+def excluirC(id):
+    session.query(models.Cachorro).filter(models.Cachorro.id_cachorro == id).delete()
+    session.commit()

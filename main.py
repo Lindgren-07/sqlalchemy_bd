@@ -32,6 +32,23 @@ def cadastrar_cachorro():
    except ValueError as v:
       flash(str(v))
       return redirect('/')
+   
+
+@app.route('/excluir_cachorro', methods=['POST'])
+def excluir_cachorro():
+   nome = request.form.get('nome')
+   id = request.form.get('idCachorro')
+
+   try:
+      validacao.excluirC(id)
+      flash(f'Cachorro "{nome}" excluido com sucesso')
+      return redirect('/')
+   except:
+      flash(f'erro ao excluir cachorro')
+      
+   return redirect('/')
+
+
   
    
    

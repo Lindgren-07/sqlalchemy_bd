@@ -3,3 +3,50 @@ body{
     flex-direction: column;
     text-align: center;
 }
+
+
+
+#cachorroFrente {
+    text-align: center;
+}
+
+#cachorroCad {
+    margin-bottom: 20px;
+}
+
+#cachorroFundo {
+    display: inline-block; /* Alinha o conteúdo ao centro */
+    text-align: left; /* Mantém o texto alinhado à esquerda */
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.lista {
+    list-style-type: disc; /* Exibe bolinhas */
+    padding-left: 40px; /* Espaço para a indentação das bolinhas */
+}
+
+#lista li {
+    margin-bottom: 10px;
+}
+
+.btnExcluir {
+    text-align: right; /* Alinha o botão à direita */
+    margin-top: 10px;
+}
+
+#excluir {
+    padding: 5px 10px;
+    background-color: #f00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.linha {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
