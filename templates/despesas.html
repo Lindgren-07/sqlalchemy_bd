@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Despesas</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<h1>Despesas</h1>
+
+{% set mensagem = get_flashed_messages()%}
+{% if mensagem %}
+<div class="mensagem_flash">
+    {{mensagem[0]}}
+</div>
+{% endif %}
+
+<form action ='/cadastrar_despesas' method='post'>
+    <label for="data_despesas">Data: </label>
+    <input type="date" name="data_despesas" id="data_despesas" placeholder="Digite aqui a data">
+    <p></p>
+    <label for="valor_despesas">Valor: </label>
+    <input type="text" name = "valor_despesas" id="valor_despesas" placeholder="Digite o valor">
+    <p></p>
+    <label for="descricao_despesas">Descrição</label>
+    <textarea rows = "10" cols = "30" placeholder="Digite aqui a descrição da despesas!" id= "descricao_despesas" name = "descricao_despesas"></textarea>
+</form>
+
+</body>
+</html>

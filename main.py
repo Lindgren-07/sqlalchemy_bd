@@ -10,6 +10,9 @@ def home():
    cachorros = models.session.query(models.Cachorro).all()
    return render_template('index.html',cachorros = cachorros)
 
+@app.route('/despesas')
+def despesas():
+   return render_template('despesas.html')
 
 @app.route('/cadastrar_cachorro',methods=['POST'])
 def cadastrar_cachorro():

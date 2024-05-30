@@ -92,7 +92,7 @@ class Cachorro(Base):
    def validarRacaCachorro(raca_cachorro):
                  
       for i in raca_cachorro:
-         if not i.isalpha():
+         if not i.isalpha() and not i.isspace() and i != '-':
             raise ValueError('o nome da raça deve conter apenas characters válidos!')
 
 
@@ -117,7 +117,8 @@ class Despesas(Base):
    id_despesas = Column(Integer,primary_key=True,autoincrement=True)
    data_despesas = Column(Date)
    valor_despesas = Column(Integer,nullable=False)
-   descricao_despesas = Column(String(255))
+   descricao_despesas = Column(String(255),nullable=False)
+
 
 
    def validarValor(valor):
