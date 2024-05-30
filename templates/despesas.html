@@ -29,5 +29,37 @@
     <button type="submit">Cadastrar</button>
 </form>
 
+
+
+
+<div id="despesasFrente">
+    <h1 id="despesasCad">Despesas cadastrados</h1>
+    <div id="despesas Fundo">
+        {% if despesas %}
+            {% for i in despesas%}
+              <form action="/excluir_despesas" method="post">
+                <ul id="lista">
+                    <input type="hidden" name="idDespesas" value="{{i.id_despesas}}">
+                    <input type="hidden" name="descricao_despesas" value="{{i.descricao_despesas}}">
+                    <li>Valor: {{i.valor_despesas}}</li>
+                    <li>Descrição: {{i.descricao_despesas}}</li>
+                </ul>
+                <div id="btnExcluir">
+                    <button type="submit" id="excluir">EXCLUIR</button>
+                </div>
+              </form>
+                <hr id="linha"></hr>
+
+
+            {% endfor %}
+
+        {% else %}
+        <h1>não existem despesas cadastradas</h1>
+        {% endif %}
+
+    </div>
+</div>
+
+
 </body>
 </html>

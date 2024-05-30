@@ -11,7 +11,8 @@ def home():
 
 @app.route('/despesas')
 def despesas():
-   return render_template('despesas.html')
+   despesas = models.session.query(models.Despesas).all()
+   return render_template('despesas.html', despesas = despesas)
 
 @app.route('/cachorro')
 def cachorro():
@@ -69,10 +70,23 @@ def cadastrar_despesas():
       validacao.validarDespesas(data,valor,descricao)
       flash('Despesa cadastrada!')
       return redirect('/despesas')
-   
    except ValueError as v:
       flash(str(v))
       return redirect('/despesas')
+   
+
+@app.route('/excluir_despesas',methods=['POST'])
+def excluir_despesas():
+   id = request.form.get('idDespesas')
+
+   try:
+      validacao.excluirDespesas(id)
+      flash(f'Despesa excluida com sucesso')
+      return redirect('/despesas')
+   except:
+      flash(f'erro ao excluir despesas')
+      
+   return redirect('/despesas')
    
 if __name__ == '__main__':
    app.run(debug=True)

@@ -32,3 +32,6 @@ def validarDespesas(d,v,de):
     except ValueError as v:
         raise ValueError(v)
     
+def excluirDespesas(id):
+    session.query(models.Despesas).filter(models.Despesas.id_despesas == id).delete()
+    session.commit()
