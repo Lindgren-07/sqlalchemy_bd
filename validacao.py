@@ -13,10 +13,22 @@ def validarCachorro(n,s,r,d):
         session.commit()
     except ValueError as v:
         raise ValueError(v)
-    else:
-        print('funcionou')
+  
         
 
 def excluirC(id):
     session.query(models.Cachorro).filter(models.Cachorro.id_cachorro == id).delete()
     session.commit()
+
+
+def validarDespesas(d,v,de):
+
+    try:
+        models.Despesas.validarValor(v)
+        models.Despesas.validarDescricaoDespesas(de)
+        nova_despesa = models.Despesas(data_despesas=d,valor_despesas=v,descricao_despesas=de)
+        session.add(nova_despesa)
+        session.commit()
+    except ValueError as v:
+        raise ValueError(v)
+    

@@ -133,6 +133,9 @@ class Despesas(Base):
               
        tamanho = len(descricao_despesas)
 
+       if descricao_despesas == '':
+          raise ValueError('A descrição de despesas não pode ser nula!')
+
        if tamanho < 0 or tamanho > 255:
           raise ValueError('O tamanho da descrição tem que ter entre 0 a 255 character!')
    
