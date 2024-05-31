@@ -19,6 +19,10 @@ def cachorro():
    cachorros = models.session.query(models.Cachorro).all()
    return render_template('cachorro.html', cachorros = cachorros)
 
+@app.route('/adm')
+def adm():
+   return render_template('adm.html')
+
 @app.route('/cadastrar_cachorro',methods=['POST'])
 def cadastrar_cachorro():
    nome = request.form.get('nome_cachorro')
