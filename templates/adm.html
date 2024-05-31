@@ -9,6 +9,15 @@
 
 <body>
 
+    <h1>Administrador</h1>
+
+    {% set mensagem = get_flashed_messages()%}
+    {% if mensagem %}
+    <div class="mensagem_flash">
+        {{mensagem[0]}}
+    </div>
+    {% endif %}
+
     <form action="/cadastrar_adm" method="post">
         <label for="nome_adm">Usuário:</label>
         <input type="text" name="nome_adm" id="nome_adm" placeholder="Digite seu nome">
@@ -16,8 +25,8 @@
         <label for="senha_adm">Senha:</label>
         <input type="password" name="senha_adm" id="senha_adm" placeholder="Digite sua senha">
         <p></p>
-        <button type="submit" value="cadastrar">Cadastrar</button>
-        <button type="submit" value="entrar">Entrat</button>
+        <button type="submit" value="cadastrar" name="btn_adm">Cadastrar</button>
+        <button type="submit" value="entrar" name="btn_adm">Entrar</button>
     </form>
 
 </body>

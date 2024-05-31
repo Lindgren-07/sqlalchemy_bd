@@ -5,9 +5,9 @@ app = Flask(__name__)
 app.secret_key = 'joao07'
 
 
-@app.route('/')
+@app.route('/tabelas')
 def home():
-   return render_template('index.html')
+   return render_template('tabelas.html')
 
 @app.route('/despesas')
 def despesas():
@@ -19,7 +19,7 @@ def cachorro():
    cachorros = models.session.query(models.Cachorro).all()
    return render_template('cachorro.html', cachorros = cachorros)
 
-@app.route('/adm')
+@app.route('/')
 def adm():
    return render_template('adm.html')
 
@@ -91,6 +91,25 @@ def excluir_despesas():
       flash(f'erro ao excluir despesas')
       
    return redirect('/despesas')
+
+
+@app.route('/cadastrar_adm', methods=['POST'])
+def cadastrar_adm():
+   usuario = request.form.get('nome_adm')
+   senha = request.form.get('senha_adm')
+   btn = request.form.get('btn_adm')
+
+   if btn == 'cadastrar':
+      try:
+         validacao.cadastrarUsuario(usuario,senha)
+         flash('Usuário cadastrado com sucesso')
+         return redirect('/')
+      except ValueError as v:
+         flash(str(v))
+
+      return redirect('/')
+   
+
    
 if __name__ == '__main__':
    app.run(debug=True)

@@ -35,3 +35,14 @@ def validarDespesas(d,v,de):
 def excluirDespesas(id):
     session.query(models.Despesas).filter(models.Despesas.id_despesas == id).delete()
     session.commit()
+
+
+def cadastrarUsuario(n,s):
+    try:
+        models.Administrador.validarNome(n)
+        models.Administrador.validarSenha(s)
+        novo_adm = models.Administrador(nome_administrador=n,senha_administrador=s)
+        session.add(novo_adm)
+        session.commit()
+    except ValueError as v:
+        raise ValueError(v)
