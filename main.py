@@ -21,7 +21,8 @@ def cachorro():
 
 @app.route('/')
 def adm():
-   return render_template('adm.html')
+   usuarios = models.session.query(models.Administrador).all()
+   return render_template('adm.html', usuarios = usuarios)
 
 @app.route('/cadastrar_cachorro',methods=['POST'])
 def cadastrar_cachorro():
@@ -108,6 +109,17 @@ def cadastrar_adm():
          flash(str(v))
 
       return redirect('/')
+   else:
+      usuarios = models.session.query(models.Administrador).all()
+      if usuarios:
+         for i in usuarios:
+            if i.nome_administrador == usuario and i.senha_administrador == senha:
+               return redirect('/tabelas')
+         flash('Usuário ou senha inválidos')
+         return redirect('/')
+      else:
+         flash('Nenhum usuário cadastrado')
+         return redirect('/')
    
 
    
