@@ -37,11 +37,11 @@ def excluirDespesas(id):
     session.commit()
 
 
-def cadastrarUsuario(n,s):
+def cadastrarUsuario(e,s):
     try:
-        models.Administrador.validarNome(n)
+        models.Administrador.validarEmail(e)
         models.Administrador.validarSenha(s)
-        novo_adm = models.Administrador(nome_administrador=n,senha_administrador=s)
+        novo_adm = models.Administrador(email_administrador=e,senha_administrador=s)
         session.add(novo_adm)
         session.commit()
     except ValueError as v:

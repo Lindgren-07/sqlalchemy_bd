@@ -96,13 +96,13 @@ def excluir_despesas():
 
 @app.route('/cadastrar_adm', methods=['POST'])
 def cadastrar_adm():
-   usuario = request.form.get('nome_adm')
+   email = request.form.get('email_adm')
    senha = request.form.get('senha_adm')
    btn = request.form.get('btn_adm')
 
    if btn == 'cadastrar':
       try:
-         validacao.cadastrarUsuario(usuario,senha)
+         validacao.cadastrarUsuario(email,senha)
          flash('Usuário cadastrado com sucesso')
          return redirect('/')
       except ValueError as v:
@@ -113,9 +113,9 @@ def cadastrar_adm():
       usuarios = models.session.query(models.Administrador).all()
       if usuarios:
          for i in usuarios:
-            if i.nome_administrador == usuario and i.senha_administrador == senha:
+            if i.email_administrador == email and i.senha_administrador == senha:
                return redirect('/tabelas')
-         flash('Usuário ou senha inválidos')
+         flash('email ou senha inválidos')
          return redirect('/')
       else:
          flash('Nenhum usuário cadastrado')

@@ -16,21 +16,24 @@ session = Session()
 class Administrador(Base):
    __tablename__ = 'administrador'
    id_administrador = Column(Integer,primary_key=True,autoincrement=True)
-   nome_administrador = Column(String(30),nullable=False)    
+   email_administrador = Column(String(30),nullable=False)    
    senha_administrador = Column(String(15),nullable=False)
 
-   def validarNome(nome):
-      if nome == '':
-         raise ValueError('O Campo "nome" não pode ser nulo!')
+   def validarEmail(email):
+      if email == '':
+         raise ValueError('O Campo "email" não pode ser nulo!')
        
-      tamanho = len(nome)
+      tamanho = len(email)
 
-      if tamanho < 2 or tamanho > 30:
-         raise ValueError('O tamanho do nome deve conter entre 1 a 30 caracteres!')
+      if tamanho < 10 or tamanho > 40:
+         raise ValueError('O tamanho do email deve conter entre 10 a 40 caracteres!')
        
-      for i in nome:
-         if not i.isalpha() and not i.isspace():
-            raise ValueError('O campo nome deve conter apenas caracteres válidos!')
+      for i in email:
+         if not i.isalpha() and not i.isdigit() and i != '@' and i != '.':                     
+            raise ValueError('O campo email deve conter apenas caracteres válidos!')
+
+      if email.count('@') != 1 or email.count('.') < 1:
+        raise ValueError('O campo email deve conter um "@" e pelo menos um "."!')         
           
     
    def validarSenha(senha):
