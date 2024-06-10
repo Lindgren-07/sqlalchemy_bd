@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="static/style.css">
 </head>
-<body>
+<body class="body-cachorro">
 <h1>Despesas</h1>
 
 {% set mensagem = get_flashed_messages()%}
@@ -23,7 +23,7 @@
     <label for="valor_despesas">Valor: </label>
     <input type="number" name = "valor_despesas" id="valor_despesas" placeholder="Digite o valor">
     <p></p>
-    <label for="descricao_despesas">Descrição</label>
+    <label for="descricao_despesas">Descrição:</label><p></p>
     <textarea rows = "10" cols = "30" placeholder="Digite aqui a descrição da despesas!" id= "descricao_despesas" name = "descricao_despesas"></textarea>
     <p></p>
     <button type="submit">Cadastrar</button>
@@ -33,7 +33,7 @@
 
 
 <div id="despesasFrente">
-    <h1 id="despesasCad">Despesas cadastrados</h1>
+    <h1 id="despesasCad">Despesas cadastradas</h1>
     <div id="despesas Fundo">
         {% if despesas %}
             {% for i in despesas%}

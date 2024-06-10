@@ -1,5 +1,6 @@
 import models
 from models import session
+from datetime import datetime
 
 def validarCachorro(n,s,r,d):
 
@@ -26,6 +27,10 @@ def validarDespesas(d,v,de):
     try:
         models.Despesas.validarValor(v)
         models.Despesas.validarDescricaoDespesas(de)
+        if d.lower() == 'null' or d == '':
+            d = None
+        else:
+            d = datetime.strptime(d, '%Y-%m-%d')
         nova_despesa = models.Despesas(data_despesas=d,valor_despesas=v,descricao_despesas=de)
         session.add(nova_despesa)
         session.commit()
