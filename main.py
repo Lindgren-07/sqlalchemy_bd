@@ -33,10 +33,10 @@ def cadastrar_cachorro():
    descricao = request.form.get('descricao_cachorro')
 
    if raca == '':
-      raca = 'null'
+      raca = 'vazia'
 
    if descricao == '':
-      descricao = 'null'
+      descricao = 'vazia'
 
 
    try:
@@ -70,7 +70,7 @@ def cadastrar_despesas():
    descricao = request.form.get('descricao_despesas')
    
    if data == '':
-      data = 'null'
+      data = 'vazia'
 
    try:
       validacao.validarDespesas(data,valor,descricao)

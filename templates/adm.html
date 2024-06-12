@@ -8,21 +8,23 @@
 </head>
 
 <body class="body-adm">
-
+    
+    {% set mensagem = get_flashed_messages()%}
+    {% if mensagem %}
+    <div class="mensagem_flash">
+        {{mensagem[0]}}
+    </div>
+    {% endif %}
 
     <div class="container">
         <h1>Administrador</h1>
 
-        {% set mensagem = get_flashed_messages()%}
-        {% if mensagem %}
-        <div class="mensagem_flash">
-            {{mensagem[0]}}
-        </div>
-        {% endif %}
+        
 
         <div class="formulario">
             <form action="/cadastrar_adm" method="post">
 
+                <div class="inputs">
                 <label for="email_adm">Email:</label>
                 <input type="text" name="email_adm" id="email_adm" placeholder="Digite seu email">
                 <p></p>
@@ -31,6 +33,7 @@
                 <input type="password" name="senha_adm" id="senha_adm" placeholder="Digite sua senha">
                 <p></p>
                 <p></p>
+                </div>
                 <div class="btns">
                     <button type="submit" value="cadastrar" name="btn_adm" class="btn_cadastrar">Cadastrar</button>
                     <button type="submit" value="entrar" name="btn_adm" class="btn_cadastrar">Entrar</button>
