@@ -140,6 +140,118 @@ class Despesas(Base):
    
    def __str__(self):
      return f'Valor: {self.valor_despesas}, Descrição: {self.descricao_despesas}'
+   
+class Assinante(Base):
+   __tablename__ = 'assinante'
+   id_assinante = Column(Integer,primary_key=True,autoincrement=True)
+   nome_assinante = Column(String(60),nullable=False)
+   email_assinante = Column(String(40),nullable=False)
+
+
+
+   def validarNomeAssinante(nomeAssinante):
+
+      if nomeAssinante == '':
+         raise ValueError('O Campo "nome" não pode ser nulo!')
+       
+      tamanho = len(nomeAssinante)
+
+      if tamanho < 2 or tamanho > 60:
+         raise ValueError('O tamanho do nome tem que ter entre 2 a 60  caracteres!')
+       
+      for i in nomeAssinante:
+         if not i.isalpha() and not i.isspace():
+            raise ValueError('O campo nome deve conter apenas caracteres válidos!')
+   
+
+
+   def validarEmail(email_assinante):
+      if email_assinante == '':
+         raise ValueError('O Campo "email" não pode ser nulo!')
+       
+      tamanho = len(email_assinante)
+
+      if tamanho < 10 or tamanho > 40:
+         raise ValueError('O tamanho do email deve conter entre 10 a 40 caracteres!')
+       
+      for i in email_assinante:
+         if not i.isalpha() and not i.isdigit() and i != '@' and i != '.':                     
+            raise ValueError('O campo email deve conter apenas caracteres válidos!')
+
+      if email_assinante.count('@') != 1 or email_assinante.count('.') < 1:
+        raise ValueError('O campo email deve conter um "@" e pelo menos um "."!')
+
+
+
+class Padrinho(Base):
+   __tablename__ = 'padrinho'
+   id_padrinho = Column(Integer,primary_key=True,autoincrement=True)
+   nome_padrinho = Column(String(60))
+   sobrenome_padrinho = Column(String(60))
+   telefone_padrinho = Column(String(11))
+   email_padrinho = Column(String(40))
+
+
+   def validarNomePadrinho(nomePadrinho):
+
+      if nomePadrinho == '':
+         raise ValueError('O Campo "nome" não pode ser nulo!')
+       
+      tamanho = len(nomePadrinho)
+
+      if tamanho < 2 or tamanho > 60:
+         raise ValueError('O tamanho do nome tem que ter entre 2 a 60  caracteres!')
+       
+      for i in nomePadrinho:
+         if not i.isalpha() and not i.isspace():
+            raise ValueError('O campo nome deve conter apenas caracteres válidos!')
+
+   @staticmethod
+   def validarSobrenomePadrinho(sobrenomePadrinho):
+
+      if sobrenomePadrinho == '':
+         raise ValueError('O Campo "sobrenome" não pode ser nulo!')
+       
+      tamanho = len(sobrenomePadrinho)
+
+      if tamanho < 2 or tamanho > 60:
+         raise ValueError('O tamanho do Sobrenome tem que ter entre 2 a 60  caracteres!')
+       
+      for i in sobrenomePadrinho:
+         if not i.isalpha() and not i.isspace():
+            raise ValueError('O campo nome deve conter apenas caracteres válidos!')
+         
+
+   def validarTelefone(telefone):
+
+      if telefone == '':
+         raise ValueError('O telefone não pode ser nulo!')
+      
+      tamanho = len(telefone)
+
+      if tamanho != 11:
+         raise ValueError('O telefone deve conter 11 digitos (DDD + Numero) sem sinais')
+      
+      for i in str(telefone):
+          if not i.isdigit():
+             raise ValueError('No campo "telefone" só pode ser digitado numeros!')
+      
+         
+   def validarEmail(email_padrinho):
+      if email_padrinho == '':
+         raise ValueError('O Campo "email" não pode ser nulo!')
+       
+      tamanho = len(email_padrinho)
+
+      if tamanho < 10 or tamanho > 40:
+         raise ValueError('O tamanho do email deve conter entre 10 a 40 caracteres!')
+       
+      for i in email_padrinho:
+         if not i.isalpha() and not i.isdigit() and i != '@' and i != '.':                     
+            raise ValueError('O campo email deve conter apenas caracteres válidos!')
+
+      if email_padrinho.count('@') != 1 or email_padrinho.count('.') < 1:
+        raise ValueError('O campo email deve conter um "@" e pelo menos um "."!')
 
 
 

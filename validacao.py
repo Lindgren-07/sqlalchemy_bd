@@ -51,3 +51,16 @@ def cadastrarUsuario(e,s):
         session.commit()
     except ValueError as v:
         raise ValueError(v)
+    
+
+def validarPadrinho(n,s,t,e):
+    try:
+        models.Padrinho.validarNomePadrinho(n)
+        models.Padrinho.validarSobrenomePadrinho(s)
+        models.Padrinho.validarTelefone(t)
+        models.Padrinho.validarEmail(e)
+        novo_padrinho = models.Padrinho(nome_padrinho=n,sobrenome_padrinho=s,telefone_padrinho=t,email_padrinho=e)
+        session.add(novo_padrinho)
+        session.commit()
+    except ValueError as v:
+        raise ValueError(v)
