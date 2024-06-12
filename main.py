@@ -6,6 +6,10 @@ app = Flask(__name__)
 app.secret_key = 'joao07'
 
 
+@app.route('/assinante')
+def assinante():
+   return render_template('assinante.html')
+
 @app.route('/padrinho')
 def padrinho():
    return render_template('padrinho.html')
@@ -141,6 +145,19 @@ def cadastrar_padrinho():
       flash(str(v))
       return redirect('/padrinho')
    
+@app.route('/cadastrar_assinante', methods=['POST'])
+def cadastrar_assinante():
+    nome = request.form.get('nome_assinante')
+    email = request.form.get('email_assinante')
+
+    try:
+        validacao.validarAssinante(nome, email)
+        flash('Assinante cadastrado!')
+        return redirect('/assinante')
+    except ValueError as v:
+        flash(str(v))
+        return redirect('/assinante')
+
 
    
 if __name__ == '__main__':

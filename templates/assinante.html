@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Assinante</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+
+<body class="body-adm">
+
+    {% set mensagem = get_flashed_messages()%}
+    {% if mensagem %}
+    <div class="mensagem_flash">
+        {{mensagem[0]}}
+    </div>
+    {% endif %}
+
+    <div class="container">
+        <h1>Administrador</h1>
+
+
+
+        <div class="formulario">
+            <form action="/cadastrar_assinante" method="post">
+
+                <div class="inputs">
+                    <label for="nome_assinante">Nome: </label>
+                    <input type="text" name="nome_assinante" id="nome_assinante" placeholder="Digite seu nome">
+                    <p></p>
+                    <label for="email_assinante">Email:</label>
+                    <input type="email" name="email_assinante" id="email_assinante" placeholder="Digite seu email">
+                    <p></p>
+                    
+                </div>
+               <button type="submit">Cadastrar</button>
+            </form>
+
+        </div>
+    </div>
+
+    
+</body>
+
+</html>

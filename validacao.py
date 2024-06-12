@@ -64,3 +64,16 @@ def validarPadrinho(n,s,t,e):
         session.commit()
     except ValueError as v:
         raise ValueError(v)
+    
+
+
+def validarAssinante(n, e):
+    try:
+        models.Assinante.validarNomeAssinante(n)
+        models.Assinante.validarEmail(e)
+        
+        novo_assinante = models.Assinante(nome_assinante=n, email_assinante=e)
+        session.add(novo_assinante)
+        session.commit()
+    except ValueError as v:
+        raise ValueError(v)
