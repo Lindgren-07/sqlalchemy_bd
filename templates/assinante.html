@@ -17,24 +17,33 @@
     {% endif %}
 
     <div class="container">
-        <h1>Administrador</h1>
+        <h1>Assinantes</h1>
+
+    <div id="assinanteFrente">
+        <h1 id="assintanteCad">Assinantes cadastrados</h1>
+        <div id="assinante Fundo">
+            {% if assinantes %}
+                {% for i in assinantes%}
+                  <form action="/excluir_assinante" method="post">
+                    <ul id="lista">
+                        <input type="hidden" name="id_padrinho" value="{{i.id_assinante}}">
+                        <input type="hidden" name="nome_assinante" value="{{i.nome_assinante}}">
+                        <input type="hidden" name="email_assinante" value="{{i.email_assinante}}">
+                        <li>Nome: {{i.nome_assinante}}</li>
+                        <li>Email: {{i.email_assinante}}</li>
+                    </ul>
+                    <div id="btnExcluir">
+                        <button type="submit" id="excluir">EXCLUIR</button>
+                    </div>
+                  </form>
+                    <hr id="linha"></hr>
 
 
+                {% endfor %}
 
-        <div class="formulario">
-            <form action="/cadastrar_assinante" method="post">
-
-                <div class="inputs">
-                    <label for="nome_assinante">Nome: </label>
-                    <input type="text" name="nome_assinante" id="nome_assinante" placeholder="Digite seu nome">
-                    <p></p>
-                    <label for="email_assinante">Email:</label>
-                    <input type="email" name="email_assinante" id="email_assinante" placeholder="Digite seu email">
-                    <p></p>
-                    
-                </div>
-               <button type="submit">Cadastrar</button>
-            </form>
+            {% else %}
+            <h1>Não existem assinantes cadastrados</h1>
+            {% endif %}
 
         </div>
     </div>

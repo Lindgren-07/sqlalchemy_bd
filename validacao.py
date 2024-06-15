@@ -57,7 +57,6 @@ def validarPadrinho(n,s,t,e):
     try:
         models.Padrinho.validarNomePadrinho(n)
         models.Padrinho.validarSobrenomePadrinho(s)
-        models.Padrinho.validarTelefone(t)
         models.Padrinho.validarEmail(e)
         novo_padrinho = models.Padrinho(nome_padrinho=n,sobrenome_padrinho=s,telefone_padrinho=t,email_padrinho=e)
         session.add(novo_padrinho)
@@ -77,3 +76,13 @@ def validarAssinante(n, e):
         session.commit()
     except ValueError as v:
         raise ValueError(v)
+    
+def excluirPadrinho(id):
+    session.query(models.Padrinho).filter(models.Padrinho.id_padrinho == id).delete()
+    session.commit()
+
+
+def excluirAssinante(id):
+    session.query(models.Assinante).filter(models.Assinante.id_assinante == id).delete()
+    session.commit()
+

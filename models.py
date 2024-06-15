@@ -220,21 +220,6 @@ class Padrinho(Base):
       for i in sobrenomePadrinho:
          if not i.isalpha() and not i.isspace():
             raise ValueError('O campo nome deve conter apenas caracteres válidos!')
-         
-
-   def validarTelefone(telefone):
-
-      if telefone == '':
-         raise ValueError('O telefone não pode ser nulo!')
-      
-      tamanho = len(telefone)
-
-      if tamanho != 11:
-         raise ValueError('O telefone deve conter 11 digitos (DDD + Numero) sem sinais')
-      
-      for i in str(telefone):
-          if not i.isdigit():
-             raise ValueError('No campo "telefone" só pode ser digitado numeros!')
       
          
    def validarEmail(email_padrinho):
@@ -256,6 +241,3 @@ class Padrinho(Base):
 
 
 Base.metadata.create_all(bind=engine)
-
-
-

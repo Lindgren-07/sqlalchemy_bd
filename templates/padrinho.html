@@ -8,40 +8,41 @@
 </head>
 
 <body class="body-padrinho">
-    
-    {% set mensagem = get_flashed_messages()%}
-    {% if mensagem %}
-    <div class="mensagem_flash">
-        {{mensagem[0]}}
-    </div>
-    {% endif %}
 
-    <div class="container">
-        <h1>Administrador</h1>
+    <div id="padrinhoFrente">
+        <h1 id="padrinhoCad">Padrinhos cadastrados</h1>
+        <div id="padrinho Fundo">
+            {% if padrinhos %}
+                {% for i in padrinhos%}
+                  <form action="/excluir_padrinho" method="post">
+                    <ul id="lista">
+                        <input type="hidden" name="id_padrinho" value="{{i.id_padrinho}}">
+                        <input type="hidden" name="nome_padrinho" value="{{i.nome_padrinho}}">
+                        <input type="hidden" name="email_padrinho" value="{{i.email_padrinho}}">
+                        <li>Nome: {{i.nome_padrinho}}</li>
+                        <li>Sobrenome: {{i.sobrenome_padrinho}}</li>
+                        <li>Telefone: {{i.telefone_padrinho}}</li>
+                        <li>Email: {{i.email_padrinho}}</li>
+                    </ul>
+                    <div id="btnExcluir">
+                        <button type="submit" id="excluir">EXCLUIR</button>
+                    </div>
+                  </form>
+                    <hr id="linha"></hr>
 
-        
 
-        <div class="formulario">
-            <form action="/cadastrar_padrinho" method="post">
+                {% endfor %}
 
-                <div class="inputs">
-                <label for="nome_padrinho">Nome: </label>
-                <input type="text" name="nome_padrinho" id="nome_padrinho" placeholder="Digite seu nome">
-                <p></p>
-                <label for="sobrenome_padrinho">Sobrenome: </label>
-                <input type="text" name="sobrenome_padrinho" id="sobrenome_padrinho" placeholder="Digite seu sobrenome">
-                <p></p>
-                <label for="telefone_padrinho">Telefone: </label>
-                <input type="tel" name="telefone_padrinho" id="telefone_padrinho" placeholder="digite seu telefone aqui">
-                <p></p>
-                <label for="email_padrinho">Email: </label>
-                <input type="email" name="email_padrinho" id="email_padrinho" placeholder="digite seu email aqui">
-                </div>
-               <button type="submit">Cadastrar</button>
-            </form>
+            {% else %}
+            <h1>Não existem padrinhos cadastrados</h1>
+            {% endif %}
 
         </div>
     </div>
+
+
+
+
 </body>
 
 </html>

@@ -8,11 +8,13 @@ app.secret_key = 'joao07'
 
 @app.route('/assinante')
 def assinante():
-   return render_template('assinante.html')
+   assinantes = models.session.query(models.Assinante).all()
+   return render_template('assinante.html', assinantes=assinantes)
 
 @app.route('/padrinho')
 def padrinho():
-   return render_template('padrinho.html')
+   padrinhos = models.session.query(models.Padrinho).all()
+   return render_template('padrinho.html', padrinhos = padrinhos)
 
 @app.route('/tabelas')
 def home():
@@ -129,7 +131,7 @@ def cadastrar_adm():
       else:
          flash('Nenhum usuário cadastrado')
          return redirect('/')
-      
+
 @app.route('/cadastrar_padrinho', methods=['POST'])
 def cadastrar_padrinho():
    nome = request.form.get('nome_padrinho')
@@ -158,6 +160,35 @@ def cadastrar_assinante():
         flash(str(v))
         return redirect('/assinante')
 
+
+@app.route('/excluir_padrinho', methods=['POST'])
+def excluir_padrinho():
+   id = request.form.get('id_padrinho')
+   nome = request.form.get('nome_padrinho')
+   email = request.form.get('email_padrinho')
+
+   try:
+      validacao.excluirPadrinho(id)
+      flash('padrinho excluido')
+      return redirect('/padrinho')
+   except ValueError as v:
+      flash(str(v))
+      return redirect('/padrinho')
+
+
+@app.route('/excluir_assinante', methods=['POST'])
+def excluir_assinante():
+   id = request.form.get('id_assinante')
+   nome = request.form.get('nome_assinante')
+   email = request.form.get('email_assinante')
+
+   try:
+      validacao.excluirAssinante(id)
+      flash('assinante excluido')
+      return redirect('/assinante')
+   except ValueError as v:
+      flash(str(v))
+      return redirect('/assinante')
 
    
 if __name__ == '__main__':
